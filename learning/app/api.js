@@ -1,5 +1,6 @@
-const BASE_URL = process.env.REACT_APP_API_URL;
+import { REACT_APP_API_URL } from '@env';
 
+const BASE_URL = REACT_APP_API_URL;
 const handleResponse = async (response) => {
   if (!response.ok) {
     const errorData = await response.json().catch(() => ({}));
