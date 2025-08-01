@@ -14,7 +14,7 @@ import {
   Platform,
 } from 'react-native';
 import { FontAwesome, MaterialIcons } from '@expo/vector-icons';
-import { login } from '../Api';
+import { login } from '../services/api';
 
 const { width } = Dimensions.get('window');
 
@@ -42,13 +42,8 @@ export default function LoginScreen({ navigation }) {
   const togglePassword = () => setHidden(!hidden);
   const handleLogin = async () => {
     try {
-        const response = await login(email, password);
-        if (response.success) {
-            navigation.replace('Decks');
-        } else {
-            // Handle login error (e.g., show an alert)
-            console.error('Login failed:', response.message);
-        }
+        await login(email, password);
+        navigation.replace('Decks');
     } catch (error) {
         console.error('Login error:', error);
         // Handle network or other errors

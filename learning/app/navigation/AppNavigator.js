@@ -15,7 +15,7 @@ const Stack = createNativeStackNavigator();
 export default function AppNavigator() {
   return (
       <Stack.Navigator initialRouteName="Login">
-        <Stack.Screen name="Login" component={LoginScreen}/>
+        <Stack.Screen name="Login" component={LoginScreen} options={{ headerShown: false }}/>
         <Stack.Screen name="SignUp" component={SignUpScreen} options={{ headerShown: false }}/>
         <Stack.Screen name="ForgetPassword" component={ForgetPasswordScreen} options={{ headerShown: false }}/>
         <Stack.Screen name="PasswordReset" component={PasswordResetScreen} options={{ headerShown: false }}/>
