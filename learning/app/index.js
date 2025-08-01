@@ -1,11 +1,11 @@
 // app/index.js
-import { NavigationContainer } from '@react-navigation/native';
+// import { NavigationContainer } from '@react-navigation/native';
 import AppNavigator from './navigation/AppNavigator';
 
 export default function App() {
   return (
-    <NavigationContainer>
+    // <NavigationContainer>
       <AppNavigator />
-    </NavigationContainer>
+    // </NavigationContainer>
   );
 }
