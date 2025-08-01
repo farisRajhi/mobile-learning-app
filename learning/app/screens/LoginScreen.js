@@ -74,7 +74,8 @@ export default function LoginScreen({ navigation }) {
           </View>
 
           {/* Forgot Password */}
-          <TouchableOpacity style={styles.forgot}>
+          <TouchableOpacity style={styles.forgot} onPress={() => navigation.navigate('ForgetPassword')}>
+            
             <Text style={styles.forgotText}>Forget your password?</Text>
           </TouchableOpacity>
 
@@ -105,11 +106,10 @@ export default function LoginScreen({ navigation }) {
             </TouchableOpacity>
           </View>
 
-          {/* Sign Up Prompt */}
           <View style={styles.signupRow}>
             <Text style={styles.signupText}>You don’t have an account? </Text>
             <TouchableOpacity onPress={() => navigation.navigate('SignUp')}>
-              <Text style={styles.signupLink}>Sign up</Text>
+            <Text style={styles.signupLink}>Sign up</Text>
             </TouchableOpacity>
           </View>
         </ScrollView>
