@@ -44,7 +44,7 @@ export default function LoginScreen({ navigation }) {
     try {
         const response = await login(email, password);
         if (response.success) {
-            navigation.replace('Home');
+            navigation.replace('Decks');
         } else {
             // Handle login error (e.g., show an alert)
             console.error('Login failed:', response.message);
