@@ -14,6 +14,7 @@ import {
   Platform,
 } from 'react-native';
 import { FontAwesome, MaterialIcons } from '@expo/vector-icons';
+import { login } from '../Api';
 
 const { width } = Dimensions.get('window');
 
@@ -21,11 +22,38 @@ export default function LoginScreen({ navigation }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [hidden, setHidden] = useState(true);
+//   async function handleLogin() {
+//     try {
+//         const response = await login(email, password);
+//         if (response.success) {
+//             navigation.replace('Home');
+//         } else {
+//             // Handle login error (e.g., show an alert)
+//             console.error('Login failed:', response.message);
+//         }
+//     } catch (error) {
+//         console.error('Login error:', error);
+//         // Handle network or other errors
+//         alert('An error occurred while trying to log in. Please try again.');
+//     }
+//     }
+
 
   const togglePassword = () => setHidden(!hidden);
-  const handleLogin = () => {
-    // TODO: call your API, then navigate
-    // navigation.replace('Home');
+  const handleLogin = async () => {
+    try {
+        const response = await login(email, password);
+        if (response.success) {
+            navigation.replace('Home');
+        } else {
+            // Handle login error (e.g., show an alert)
+            console.error('Login failed:', response.message);
+        }
+    } catch (error) {
+        console.error('Login error:', error);
+        // Handle network or other errors
+        alert('An error occurred while trying to log in. Please try again.');
+    }
   };
 
   return (
