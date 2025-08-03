@@ -15,11 +15,12 @@ import {
     PASSWORD_RESET_CONFIRM_FAIL,
     LOGOUT,
 } from '../types';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 
 const initialState = {
-    access: localStorage.getItem('access'),
-    refresh: localStorage.getItem('refresh'),
+    access: null,
+    refresh: null,
     isAuthenticated: null,
     user:null,
     error: null
@@ -35,8 +36,8 @@ export default function(state = initialState, actions) {
                 isAuthenticated: true
             }
         case LOGIN_SUCCESS:
-            localStorage.setItem('access', payload.access);
-            console.log(localStorage)
+            // await AsyncStorage.setItem('access', payload.access);
+            // console.log(await AsyncStorage)
             return {
                 ...state,
                 isAuthenticated: true,
@@ -65,8 +66,8 @@ export default function(state = initialState, actions) {
             }
         case LOGOUT:
         case LOGIN_FAIL:
-            localStorage.removeItem('access');
-            localStorage.removeItem('refresh');
+            // await AsyncStorage.removeItem('access');
+            // await AsyncStorage.removeItem('refresh');
             return{
                 ...state,
                 isAuthenticated: false,

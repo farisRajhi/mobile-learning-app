@@ -16,18 +16,20 @@ import {
     LOGOUT,
 } from '../types';
 import axios from 'axios';
-import axiosInstance from '../utils/axiosConfig';
+import axiosInstance from '../axiosConfig';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
 
 // import { fetchFlashcardsForToday } from './flashcardActions';
 export const checkAuthenticated = () => async dispatch => {
-    if (localStorage.getItem('access')) {
+    if (await AsyncStorage.getItem('access')) {
         const config = {
             headers: {
                 'Content-Type' : 'application/json',
                 'Accept' : 'application/json'
             }
         };
-        const body = JSON.stringify({token: localStorage.getItem('access')});
+        const body = JSON.stringify({token: await AsyncStorage.getItem('access')});
         try {
             const res = await axiosInstance.post(`${process.env.REACT_APP_API_URL}/auth/jwt/verify/`, body, config)
             if (res.data.code !== 'token_not_valid') {
@@ -48,11 +50,11 @@ export const checkAuthenticated = () => async dispatch => {
 }
 
 export const load_user = () => async dispatch => {
-    if (localStorage.getItem('access')) {
+    if (await AsyncStorage.getItem('access')) {
         const config = {
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': `JWT ${localStorage.getItem('access')}`,
+                'Authorization': `JWT ${await AsyncStorage.getItem('access')}`,
                 'Accept': 'application/json'
             }
         };

@@ -1,5 +1,7 @@
 import axios from "axios"
-import axiosInstance from "../utils/axiosConfig"
+import axiosInstance from "../axiosConfig"
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
 import {
     CHAT_RESPONSE_REQUEST,
     CHAT_RESPONSE_SUCCESS,
@@ -41,12 +43,12 @@ import {
     FETCH_ALL_FILES_REQUEST,
     FETCH_ALL_FILES_SUCCESS,
 } from '../types'
-import { json } from "react-router-dom"
+// import { json } from "react-router-dom"
 
 
 export const fetchAllFiles = () => async dispatch => {
     dispatch({ type: FETCH_ALL_FILES_REQUEST });
-    const accessToken = localStorage.getItem('access');
+    const accessToken = await AsyncStorage.getItem('access');
     if (accessToken) {
         const config = {
             headers: {
@@ -73,7 +75,7 @@ export const fetchAllFiles = () => async dispatch => {
 
 export const chatResponse = (userMessage) => async dispatch => {
     dispatch({ type: CHAT_RESPONSE_REQUEST })
-    const accessToken = localStorage.getItem('access')
+    const accessToken = await AsyncStorage.getItem('access')
     if (accessToken){
         const config = {
             headers: {
@@ -104,7 +106,7 @@ export const chatResponse = (userMessage) => async dispatch => {
 
 
 export const importFile = (subjectId, topicId, file, subtopic) => async dispatch => {
-    const accessToken = localStorage.getItem('access');
+    const accessToken = await AsyncStorage.getItem('access');
     if (accessToken) {
         let formData = new FormData();
         formData.append('subject', subjectId);
@@ -141,7 +143,7 @@ export const importFile = (subjectId, topicId, file, subtopic) => async dispatch
 };
 
 export const fetchAllSections = () => async dispatch => {
-    const accessToken = localStorage.getItem('access')
+    const accessToken = await AsyncStorage.getItem('access')
     if (accessToken) {
         const config = {
             headers : {
@@ -171,7 +173,7 @@ export const fetchAllSections = () => async dispatch => {
 
 
 export const fetchSubtopics = () => async dispatch => {
-    const accessToken = localStorage.getItem('access')
+    const accessToken = await AsyncStorage.getItem('access')
     if (accessToken) {
         const config = {
             headers : {
@@ -195,7 +197,7 @@ export const fetchSubtopics = () => async dispatch => {
 }
 
 export const FetchSections = (subjectId, topicId) => async dispatch => {
-    const accessToken = localStorage.getItem('access')
+    const accessToken = await AsyncStorage.getItem('access')
     if (accessToken) {
         const config = {
             headers: {
@@ -231,7 +233,7 @@ export const FetchSections = (subjectId, topicId) => async dispatch => {
 
 export const chatStudyResponse = (sectionsId) => async dispatch => {
     dispatch({ type: CHAT_RESPONSE_REQUEST })
-    const accessToken = localStorage.getItem('access')
+    const accessToken = await AsyncStorage.getItem('access')
     if (accessToken) {  
         const config = {
             headers: {
@@ -264,7 +266,7 @@ export const chatStudyResponse = (sectionsId) => async dispatch => {
 
 
 export const handleUserResponse = (user_input, sectionId) => async dispatch => {
-    const accessToken = localStorage.getItem('access')
+    const accessToken = await AsyncStorage.getItem('access')
     if (accessToken) {
         const config = {
             headers: {
@@ -298,7 +300,7 @@ export const handleUserResponse = (user_input, sectionId) => async dispatch => {
 
 
 export const importFile1 = (subjectId, topicId, file) => async dispatch => {
-    const accessToken = localStorage.getItem('access');
+    const accessToken = await AsyncStorage.getItem('access');
     if (accessToken) {
         let formData = new FormData();
         formData.append('subject', subjectId);
@@ -336,7 +338,7 @@ export const importFile1 = (subjectId, topicId, file) => async dispatch => {
 export const  createQuestion = (sectionId) => async dispatch => {
     dispatch({ type: CREATE_QUESTIONS_REQUEST }); // Add this line
 
-    const accessToken = localStorage.getItem('access')
+    const accessToken = await AsyncStorage.getItem('access')
     if (accessToken) {
         const config = {
             headers : {
@@ -369,7 +371,7 @@ export const  createQuestion = (sectionId) => async dispatch => {
 }
 
 export const fetchQuestions = (sectionId) => async dispatch => {
-    const accessToken = localStorage.getItem('access')
+    const accessToken = await AsyncStorage.getItem('access')
     console.log(accessToken)
     if (accessToken) {
         const config = {
@@ -402,7 +404,7 @@ export const fetchQuestions = (sectionId) => async dispatch => {
 }
 
 export const FetchAllQuestions = () => async dispatch => {
-    const accessToken = localStorage.getItem('access')
+    const accessToken = await AsyncStorage.getItem('access')
     if (accessToken) {
         const config = {
             headers : {
@@ -433,7 +435,7 @@ export const FetchAllQuestions = () => async dispatch => {
 
 
 export const createFlashCards = (sectionId, topicId) => async dispatch => {
-    const accessToken = localStorage.getItem('access')
+    const accessToken = await AsyncStorage.getItem('access')
     console.log(accessToken)
     if (accessToken) {
         const config = {
@@ -466,7 +468,7 @@ export const createFlashCards = (sectionId, topicId) => async dispatch => {
 
 
 // export const explainQuestion = (question, answer) => async dispatch  => {
-//     const accessToken = localStorage.getItem('access')
+//     const accessToken = await AsyncStorage.getItem('access')
 //     if (accessToken) {
 //         const config = {
 //             headers : {
@@ -499,7 +501,7 @@ export const createFlashCards = (sectionId, topicId) => async dispatch => {
 // Action creator
 export const explainQuestion = (questionId, question, answer) => async dispatch => {
     dispatch({ type: EXPLAIN_QUESTIONS_REQUEST });
-    const accessToken = localStorage.getItem('access');
+    const accessToken = await AsyncStorage.getItem('access');
     if (accessToken) {
         const config = {
             headers: {
@@ -533,7 +535,7 @@ export const explainQuestion = (questionId, question, answer) => async dispatch 
 };
 
 export const updateSectionStatus = (sectionId, status) => async dispatch => {
-    const accessToken = localStorage.getItem('access')
+    const accessToken = await AsyncStorage.getItem('access')
     if(accessToken) {
         const config = {
             headers: {
@@ -565,7 +567,7 @@ export const updateSectionStatus = (sectionId, status) => async dispatch => {
 
 export const chatSendResponse = (userMessage) => async dispatch => {
     dispatch({ type: CHAT_RESPONSE_REQUEST });
-    const accessToken = localStorage.getItem('access');
+    const accessToken = await AsyncStorage.getItem('access');
     if (accessToken) {
         const config = {
             headers: {
@@ -597,7 +599,7 @@ export const chatSendResponse = (userMessage) => async dispatch => {
 
 export const CheckHardFlashCard = (question, answer, user_answer) => async dispatch => {
     dispatch({ type: CHECK_HARDFLASHCARDS_REQUEST });
-    const accessToken = localStorage.getItem('access');
+    const accessToken = await AsyncStorage.getItem('access');
     if (accessToken) {
         const config = {
             headers: {
@@ -629,7 +631,7 @@ export const CheckHardFlashCard = (question, answer, user_answer) => async dispa
 
 export const analyzeAudioHardFlashCard = (question, answer, userAnswer) => async dispatch => {
     dispatch({ type: CHECK_HARDFLASHCARDS_AUDIO_REQUEST });
-    const accessToken = localStorage.getItem('access');
+    const accessToken = await AsyncStorage.getItem('access');
     if (accessToken) {
         const formData = new FormData();
         formData.append('question', question);
@@ -668,7 +670,7 @@ export const analyzeAudioHardFlashCard = (question, answer, userAnswer) => async
 
 export const uploadFile = (topicId, file_title, file) => async dispatch => {
     dispatch({ type: UPLOAD_FILE_REQUEST });
-    const accessToken = localStorage.getItem('access');
+    const accessToken = await AsyncStorage.getItem('access');
     if (accessToken) {
         let formData = new FormData();
         formData.append('topic_id', topicId);
@@ -706,7 +708,7 @@ export const uploadFile = (topicId, file_title, file) => async dispatch => {
 
 export const GenerateFlashCards =  (text, file_id, topic_Id) => async dispatch => {
     dispatch({type: GENERATE_FLASHCARD_NEWCHAT_REQUEST})
-    const accessToken = localStorage.getItem('access')
+    const accessToken = await AsyncStorage.getItem('access')
     if (accessToken) {
         let formData = new FormData()
         formData.append('text', text);
@@ -743,7 +745,7 @@ export const GenerateFlashCards =  (text, file_id, topic_Id) => async dispatch =
 
 export const GenerateQuestion = (text, file_id, topic_Id) => async dispatch => {
     dispatch({type: GENERATE_QUESTION_NEWCHAT_REQUEST})
-    const accessToken = localStorage.getItem('access')
+    const accessToken = await AsyncStorage.getItem('access')
     if (accessToken) {
         let formData = new FormData()
         formData.append('text', text);
