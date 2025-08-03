@@ -1,19 +1,23 @@
 // app/_layout.tsx
 import React from 'react';
-import { Stack }   from 'expo-router';
-import { Provider } from 'react-redux';
-import { PersistGate } from 'redux-persist/lib/integration/react';
-import store, { persistor } from '../store';
-import { View } from 'react-native-reanimated/lib/typescript/Animated';
+import { Slot } from 'expo-router';
+import { View, StyleSheet } from 'react-native';
 
 export default function RootLayout() {
   return (
-    <View style={{ flex: 1 }}>
-      <Stack />
-      <Text>Loading...</Text>
-    </View> 
+    // Root container for all routes
+    <View style={styles.container}>
+      {/* Renders the matched page (e.g. index.tsx) */}
+      <Slot />
+    </View>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+});
 // // app/_layout.tsx
 // import React from 'react';
 // import { Stack }   from 'expo-router';
