@@ -14,11 +14,14 @@ import {
   Platform,
 } from 'react-native';
 import { FontAwesome, MaterialIcons } from '@expo/vector-icons';
+import { useRouter, Link } from 'expo-router';
+
 import { login } from '../services/api';
 
 const { width } = Dimensions.get('window');
 
-export default function LoginScreen({ navigation }) {
+export default function LoginScreen() {
+  const router = useRouter();  
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [hidden, setHidden] = useState(true);
@@ -43,7 +46,7 @@ export default function LoginScreen({ navigation }) {
   const handleLogin = async () => {
     try {
         await login(email, password);
-        navigation.replace('Decks');
+        router.replace('/decks');
     } catch (error) {
         console.error('Login error:', error);
         // Handle network or other errors
@@ -97,8 +100,10 @@ export default function LoginScreen({ navigation }) {
           </View>
 
           {/* Forgot Password */}
-          <TouchableOpacity style={styles.forgot} onPress={() => navigation.navigate('ForgetPassword')}>
-            
+          <TouchableOpacity
+            style={styles.forgot}
+            onPress={() => router.push('/forgetpassword')}
+          >            
             <Text style={styles.forgotText}>Forget your password?</Text>
           </TouchableOpacity>
 
@@ -131,9 +136,9 @@ export default function LoginScreen({ navigation }) {
 
           <View style={styles.signupRow}>
             <Text style={styles.signupText}>You don’t have an account? </Text>
-            <TouchableOpacity onPress={() => navigation.navigate('SignUp')}>
-            <Text style={styles.signupLink}>Sign up</Text>
-            </TouchableOpacity>
+            <Link href="/signup">
+              <Text style={styles.signupLink}>Sign up</Text>
+            </Link>
           </View>
         </ScrollView>
       </KeyboardAvoidingView>

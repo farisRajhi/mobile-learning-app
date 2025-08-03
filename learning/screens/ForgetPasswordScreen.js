@@ -10,16 +10,19 @@ import {
   KeyboardAvoidingView,
   Platform,
 } from 'react-native';
+import { useRouter } from 'expo-router';
+
 
 const GREEN = '#1CB955';
 const LIGHT_BG = '#F2F2F2';
 
-export default function ForgetPasswordScreen({ navigation }) {
+export default function ForgetPasswordScreen() {
+  const router = useRouter();
   const [email, setEmail] = useState('');
 
   const handleNext = () => {
     // TODO: trigger your reset-password API, then navigate on success
-    // navigation.navigate('ResetPasswordCode'); 
+    router.push('/passwordreset');
   };
 
   return (
