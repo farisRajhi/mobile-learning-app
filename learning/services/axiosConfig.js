@@ -1,6 +1,6 @@
 import axios from 'axios';
 import store from '../store';
-import { LOGOUT } from '../services/types';
+import { LOGOUT } from './types';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const axiosInstance = axios.create({

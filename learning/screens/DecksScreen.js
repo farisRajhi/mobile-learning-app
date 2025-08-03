@@ -13,7 +13,7 @@ import {
   Dimensions,
 } from 'react-native';
 import { MaterialCommunityIcons, Entypo, Feather } from '@expo/vector-icons';
-import TabButton from '../components/TabButton';
+import TabButton from '../../components/TabButton';
 import api from '../services/api';
 
 const GREEN = '#1CB955';
