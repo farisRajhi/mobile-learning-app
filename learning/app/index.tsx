@@ -1,2 +1,4 @@
 // learning/app/index.tsx
-export { default } from './(auth)/login';
+import LoginScreen from './(auth)/login';
+
+export default LoginScreen;
