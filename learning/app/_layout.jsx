@@ -1,13 +1,14 @@
 // app/_layout.tsx
 import React from 'react';
 import { Slot } from 'expo-router';
-import { View, StyleSheet } from 'react-native';
+import { View, StyleSheet, Text } from 'react-native';
 
 export default function RootLayout() {
   return (
     // Root container for all routes
     <View style={styles.container}>
-      {/* Renders the matched page (e.g. index.tsx) */}
+      <Text>Loading...</Text> 
+      
       <Slot />
     </View>
   );
